@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class=" responsive" lang="es">
+    <head>
+        <meta charset="UTF-8">
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" type="text/css">
+        <link rel="icon" href="{{ url_for('static', filename='steam.ico') }}" type="image/x-icon">
+        <title>Register</title>
+    </head>
+    <body>
+        <div class="Form">
+            <p id="title_form">CREATE YOUR ACCOUNT</p>
+            <div class="dates_form">
+                <form action="/register_user" method="post">
+                    <h4 for="user_name">USER NAME</h4>
+                    <input type="text" id="user_name" name="user_name" required>
+        
+                    <h4 for="email">EMAIL</h4>
+                    <input type="email" id="email" name="email" required>
+        
+                    <h4 for="password">PASSWORD</h4>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <button type="submit" id="button_continue">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
