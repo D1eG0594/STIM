@@ -1,9 +1,9 @@
-Para poser correr el programa deben promero crear un enviroment de pyhton y se hace con python -m venv env
-ejecuten esto fuera de la ccarpeta del proyecto para que no se suba al github, depsues deben ir con el command prompt (No funciona con el powershell),
-para abrir el command prompt crean una nueva terminal en visual y le dan a la flechita uqe apunta hacia al lado del mas y le dan a command prompt,
-despues a env/Scripts y ejecutan activate.bat,
+Para poder correr el programa deben primero crear un enviroment de pyhton y se hace con python -m venv env
+ejecuten esto fuera de la ccarpeta del proyecto para que no se suba al github, despues deben ir con el command prompt (No funciona con el powershell),
+para abrir el command prompt crean una nueva terminal en visual y le dan a la flechita que apunta hacia abajo al lado del mas y le dan a command prompt,
+despues van a env/Scripts y ejecutan activate.bat,
 despues ponen pip install flask 
 y tambien pip install psycopg2, con eso ahora van a donde esta el archivo app.py que esta dentro de la carpeta PA,
-y escriben python app.py, ahi se deberia ejecutar y copian y pegan el link que les da que por defecto va a ser http://127.0.0.1:5000,
+y escriben python app.py, ahi se deberia ejecutar y copian y pegan el link, el que les da que por defecto va a ser http://127.0.0.1:5000,
 cada vez que guarden cambios en elgun archivo python que pertenezca al proyecto se va a volver a iniciar el programa y para ver cambios que hacen en archivos css y html tienen que recargar la pagina,
 cabe aclarar que se necesita tener ya instalado el postgres y DBeaver, y la base de datos creada y restaurada, cualquier cosa me preguntan.
