@@ -1,11 +1,6 @@
-import psycopg2
 from flask import Flask, render_template, request, flash, session
-from db_user.insert_user import insert_user
-from db_user.user import User_name, User_login_info
-from db_user.login_user import login_user
-from db_user.obtain_user_data import obtain_user_data
-from db_games.library import get_library_id
-from db_games.get_games_in_library import get_games_in_library
+from user.user import InsertUser, UserLoginInfo, ObtainUserData, UserLibrary
+from models.library import Library
 
 app = Flask(__name__)
 app.secret_key = '1234'
@@ -31,11 +26,10 @@ def register():
     email = request.form.get("email")
     password = request.form.get("password")
     
-    # Crear objeto User_name y User_login_info
-    user_name = User_name(user_name) 
-    user_login_info = User_login_info(email, password)
+    # Crear objeto InsertUser
+    register = InsertUser(user_name=user_name, email=email, password=password)
 
-    insert_user(user_name, user_login_info)
+    register.insert_user()
 
     flash('Usuario registrado correctamente', 'success')
     return render_template('login.html')
@@ -47,15 +41,19 @@ def login():
         email = request.form.get("email")
         password = request.form.get("password")
 
-        user_login_info = User_login_info(email, password)
+        login_info = UserLoginInfo(email=email, password=password)
 
-        credentials = login_user(user_login_info)
+        credentials = login_info.login_user()
 
         if credentials:
-            user_data = obtain_user_data(user_login_info)
-            session['user_id'] = user_data['user_id']
-            session['name'] = user_data['name']
-            session['email'] = user_data['email']
+            user_data = ObtainUserData(email=email, password=password)
+            user_info = user_data.get_user_data()
+            print(user_data)
+            print(1)
+            if user_data:
+                session['user_id'] = user_info['user_id']
+                session['user_name'] = user_info['user_name']
+                session['email'] = user_info['email']
 
             return render_template('store.html')
         else:
@@ -74,19 +72,21 @@ def category_page():
 def library_page():
 
     user_id = session['user_id']
-    library_id = get_library_id(user_id)
+    user_library = UserLibrary(user_id=user_id)
+    library_id = user_library.get_library_id()
 
-    games_in_library = get_games_in_library(library_id)
+    library = Library(library_id)
 
+    games_in_library = library.get_games_in_library()
 
     return render_template('library.html', games = games_in_library)
 
 @app.route("/profile_page", methods=["POST"])
 def profile_page():
-    name = session.get('name')
+    user_name = session.get('user_name')
     email = session.get('email')
 
-    return render_template('profile.html', name=name, email=email)
+    return render_template('profile.html', user_name=user_name, email=email)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
