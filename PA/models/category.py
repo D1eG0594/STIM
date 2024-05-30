@@ -6,17 +6,17 @@ class Category:
         self.name = name
     
     @staticmethod
-    def get_categories_for_game(game_id):
+    def get_categories_for_game(category_id):
         conn = db_conn()
         cursor = conn.cursor()
         cursor.execute(
             '''
-            SELECT c.category_id, c.name
-            FROM category c
-            JOIN game_category_rel gcr ON c.category_id = gcr.category_id
-            WHERE gcr.game_id = %s
+            SELECT game_id, name
+            FROM game
+            JOIN game_category_rel ON game.game_id = game_category_rel.game_fk
+            WHERE game_category_rel.category_fk = %s
             ''',
-            (game_id,)
+            (category_id,)
         )
-        categories = cursor.fetchall()
-        return [Category(*cat) for cat in categories]
+        games = cursor.fetchall()
+        return games

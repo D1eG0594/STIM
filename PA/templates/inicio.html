@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Inicio - Juegos</title>
     <link rel="stylesheet" href="inicio.css">
+    <link href="{{ url_for('static', filename='css/inicio.css') }}" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{{ url_for('static', filename='steam.ico') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="#">Biblioteca</a></li>
-                <li><a href="#">Tu Tienda</a></li>
-                <li><a href="#">Perfil</a></li>
+                <li><a href="/library_page">Biblioteca</a></li>
+                <li><a href="/store_page">Tu Tienda</a></li>
+                <li><a href="/profile_page">Perfil</a></li>
+                <li><a href="/login_page">Cerrar Sesion</a></li>
             </ul>
         </nav>
     </header>
@@ -20,33 +24,33 @@
     <main>
         <aside>
             <ul>
-                <li><a href="#">Aventura</a></li>
-                <li><a href="#">Deportes</a></li>
-                <li><a href="#">Acción</a></li>
-                <li><a href="#">Estrategia</a></li>
-                <li><a href="#">RPG</a></li>
+                <li><a href="{{ url_for('category_page', category_id=22) }}">Aventura</a></li>
+                <li><a href="{{ url_for('category_page', category_id=335) }}">Deportes</a></li>
+                <li><a href="{{ url_for('category_page', category_id=16) }}">Acción</a></li>
+                <li><a href="{{ url_for('category_page', category_id=339) }}">Estrategia</a></li>
+                <li><a href="{{ url_for('category_page', category_id=299) }}">RPG</a></li>
             </ul>
         </aside>
 
         <section class="content">
             <div class="slider">
                 <div class="slide active">
-                    <img src="images/Dota2.jpeg" alt="Juego 1">
+                    <img src="/static/images/Dota2.jpeg" alt="Juego 1">
                 </div>
                 <div class="slide">
-                    <img src="images/amongUs.jpeg" alt="Juego 2">
+                    <img src="/static/images/amongUs.jpeg" alt="Juego 2">
                 </div>
                 <div class="slide">
-                    <img src="images/eldenRing.jpeg" alt="Juego 3">
+                    <img src="/static/images/eldenRing.jpeg" alt="Juego 3">
                 </div>
                 <div class="slide">
-                    <img src="images/apexLegends.jpeg" alt="Juego 4">
+                    <img src="/static/images/apexLegends.jpeg" alt="Juego 4">
                 </div>
                 <div class="slide">
-                    <img src="images/arkSurvivalEvolved.jpeg" alt="Juego 5">
+                    <img src="/static/images/arkSurvivalEvolved.jpeg" alt="Juego 5">
                 </div>
                 <div class="slide">
-                    <img src="images/tomClancysRainbow.jpeg" alt="Juego 6">
+                    <img src="/static/images/tomClancysRainbow.jpeg" alt="Juego 6">
                 </div>
                 
                 <div class="slider-nav">
@@ -68,19 +72,19 @@
                 <h2>Otros Juegos</h2>
                 <div class="game-grid">
                     <div class="game-card">
-                        <img src="images/warface.jpeg" alt="Juego 4">
-                        <h3>warface</h3>
+                        <img src="/static/images/warface.jpeg" alt="Juego 4">
+                        <h3>Warface</h3>
                     </div>
                     <div class="game-card">
-                        <img src="images/warframe.jpeg" alt="Juego 5">
+                        <img src="/static/images/warframe.jpeg" alt="Juego 5">
                         <h3>warframe</h3>
                     </div>
                     <div class="game-card">
-                        <img src="images/warThunder.jpeg" alt="Juego 6">
+                        <img src="/static/images/warThunder.jpeg" alt="Juego 6">
                         <h3>War Thunder</h3>
                     </div>
                     <div class="game-card">
-                        <img src="images/worldOfTanksBlitz.jpg" alt="Juego 7">
+                        <img src="/static/images/worldOfTanksBlitz.jpg" alt="Juego 7">
                         <h3>World of tanks blitz</h3>
                     </div>
                 </div>
@@ -92,7 +96,5 @@
         <p>&copy; 2024 Tu Sitio de Juegos. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="js"></script>
-    <script src="scripts.js"></script>
 </body>
 </html>

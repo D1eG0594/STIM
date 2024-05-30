@@ -16,7 +16,7 @@ class Game:
         cursor.execute(
             '''
             SELECT game_id, name, release_date, positive, negative, downloads
-            FROM games
+            FROM game
             WHERE game_id = %s
             ''',
             (game_id,)
