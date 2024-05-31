@@ -1,6 +1,6 @@
 from db.db_conn import db_conn
 
-class Game:
+class Game: #Clase que se encarga de extraer toda la informacion del juego
     def __init__(self, game_id, name, release_date, positive, negative, downloads):
         self.game_id = game_id
         self.name = name

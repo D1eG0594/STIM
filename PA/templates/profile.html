@@ -8,8 +8,21 @@
     <title>Profile</title>
 </head>
 <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/library_page">Biblioteca</a></li>
+                <li><a href="/store_page">Tu Tienda</a></li>
+                <li><a href="/profile_page">Perfil</a></li>
+                <li><a href="/login_page">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+    
     <h1>User Profile</h1>
-    <div>
+    <div class="profile-container">
+        <img src="{{ url_for('static', filename='images/profile_pic.png') }}" alt="Profile Picture">
         <p><strong>Name:</strong> {{ user_name }}</p>
         <p><strong>Email:</strong> {{ email }}</p>
     </div>

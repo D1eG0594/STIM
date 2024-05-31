@@ -13,17 +13,18 @@ html {
 }
 
 body {
-    background-color: #2C1A1A;
+    background-color: #1b1b1b;
     color: #EDEDED;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
+    padding: 20px
 }
 
 header {
     width: 100%;
-    background-color: #3A1D1D;
+    background-color: #30004d;
     padding: 10px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
@@ -46,7 +47,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #A44545;
+    color: #6a1b9a;
 }
 
 main {
@@ -58,7 +59,7 @@ main {
 
 aside {
     width: 20%;
-    background-color: #3A1D1D;
+    background-color: #30004d;
     padding: 20px;
     border-radius: 10px;
     margin-right: 20px;
@@ -80,7 +81,7 @@ aside a {
 }
 
 aside a:hover {
-    color: #A44545;
+    color: #6a1b9a;
 }
 
 .slider {
@@ -88,7 +89,7 @@ aside a:hover {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #4A2323;
+    background-color: #30004d;
     align-items: center;
 }
 
@@ -140,8 +141,8 @@ aside a:hover {
     font-size: 21px;
     padding: 10px;
     border-radius: 5rem;
-    color: #A44545;
-    background: #4A2323;
+    color: #30004d;
+    background: #30004d;
 }
 
 .heading h2{
@@ -169,7 +170,7 @@ aside a:hover {
 }
 
 .game-card {
-    background-color: #3A1D1D;
+    background-color: #30004d;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
@@ -190,7 +191,7 @@ aside a:hover {
 /* Footer */
 footer {
     width: 100%;
-    background-color: #3A1D1D;
+    background-color: #30004d;
     text-align: center;
     padding: 20px 0;
 }

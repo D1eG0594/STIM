@@ -1,6 +1,6 @@
 from db.db_conn import db_conn
 
-class Category:
+class Category: #Clase que se encarga de extraer todos los juegos de una categoria
     def __init__(self, category_id, name):
         self.category_id = category_id
         self.name = name

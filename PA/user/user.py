@@ -15,7 +15,7 @@ class User:
             "password": self.password
         }
     
-    @staticmethod
+    @staticmethod #Metodo estatico para poner relizar la conexion a la base de datos
     def db_conn():
         # Parámetros de conexión
         dbname = 'db_stim'
@@ -30,7 +30,7 @@ class User:
             print("Error al conectar a la base de datos PostgreSQL:", e)
             return None
 
-class InsertUser(User):
+class InsertUser(User): #Clase que se encarga de insertar un nuevo usuario a la base de datos
     def __init__(self, user_name=None, email=None, password=None):
         super().__init__(user_name=user_name, email=email, password=password)
 
@@ -57,7 +57,7 @@ class InsertUser(User):
         else:
             print("No se pudo establecer la conexión a la base de datos.")
 
-class UserLoginInfo(User):
+class UserLoginInfo(User): #Clase que se encarga de comprobar si el email y la contraseña se encuantran el la base de datos
     def __init__(self, email=None, password=None):
         super().__init__(email=email, password=password)
 
@@ -93,7 +93,7 @@ class UserLoginInfo(User):
             print("Error al verificar las credenciales:", e)
             return False
 
-class ObtainUserData(User):
+class ObtainUserData(User): #Clase que se encarga de obtener todos los datos del usuario utilizando el email y la contraseña
     def __init__(self, email=None, password=None):
         super().__init__(email=email, password=password)
 
@@ -132,7 +132,7 @@ class ObtainUserData(User):
             print("No se pudo establecer la conexión a la base de datos.")
             return None
 
-class UserLibrary(User):
+class UserLibrary(User): #Clase que se encarga de extrar la id de la libreria de usuario
     def __init__(self, library_id=None, user_id=None):
         super().__init__(user_id=user_id)
         self.library_id = library_id

@@ -8,14 +8,27 @@
     <title>Library</title>
 </head>
 <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/library_page">Biblioteca</a></li>
+                <li><a href="/store_page">Tu Tienda</a></li>
+                <li><a href="/profile_page">Perfil</a></li>
+                <li><a href="/login_page">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    
     <h1>Library</h1>
     
-    <ul>
+    <div class="game-container">
         {% for game in games %}
-            <li>
+            <div class="game">
                 <a href="/game/{{ game[0] }}">{{ game[1] }}</a>
-            </li>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>

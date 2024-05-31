@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/game.css') }}" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{{ url_for('static', filename='steam.ico') }}" type="image/x-icon">
     <title>{{ game.name }}</title>
 </head>
 <body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/library_page">Biblioteca</a></li>
+                <li><a href="/store_page">Tu Tienda</a></li>
+                <li><a href="/profile_page">Perfil</a></li>
+                <li><a href="/login_page">Cerrar Sesion</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <h1>{{ game.name }}</h1>
-    <!-- Aquí puedes mostrar toda la información del juego -->
-    <p>Release Date: {{ game.release_date }}</p>
-    <p>Positive Reviews: {{ game.positive }}</p>
-    <p>Negative Reviews: {{ game.negative }}</p>
-    <p>Downloads: {{ game.downloads }}</p>
-    <!-- Agrega más detalles según sea necesario -->
+    <div class="game-container">
+        <p><strong>Release Date:</strong> {{ game.release_date }}</p>
+        <p><strong>Positive Reviews:</strong> {{ game.positive }}</p>
+        <p><strong>Negative Reviews:</strong> {{ game.negative }}</p>
+        <p><strong>Downloads:</strong> {{ game.downloads }}</p>
+    </div>
 </body>
 </html>

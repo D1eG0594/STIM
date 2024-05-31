@@ -1,6 +1,6 @@
 from db.db_conn import db_conn
 
-class Library:
+class Library: #Clase que se encarga de extraer todos los juegos que hay en una biblioteca especifica
     def __init__(self, library_id):
         self.library_id = library_id
     
