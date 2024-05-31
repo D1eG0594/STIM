@@ -4,7 +4,7 @@ class Library: #Clase que se encarga de extraer todos los juegos que hay en una 
     def __init__(self, library_id):
         self.library_id = library_id
     
-    #@staticmethod
+    
     def get_games_in_library(self):
         conn = db_conn()
         cursor = conn.cursor()

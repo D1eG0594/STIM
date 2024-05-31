@@ -5,7 +5,7 @@ class Category: #Clase que se encarga de extraer todos los juegos de una categor
         self.category_id = category_id
         self.name = name
     
-    @staticmethod
+    @staticmethod #Metodo estatico para que se pueda usar sin necesidad de crear una instancia de objeto
     def get_categories_for_game(category_id):
         conn = db_conn()
         cursor = conn.cursor()

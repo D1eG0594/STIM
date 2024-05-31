@@ -9,7 +9,7 @@ class Game: #Clase que se encarga de extraer toda la informacion del juego
         self.negative = negative
         self.downloads = downloads
     
-    @staticmethod
+    @staticmethod #Metodo estatico para que se pueda usar sin necesidad de crear una instancia de objeto
     def get_game_info(game_id):
         conn = db_conn()
         cursor = conn.cursor()
