@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/profile.css') }}" rel="stylesheet" type="text/css">
+    <link rel="icon" href="{{ url_for('static', filename='steam.ico') }}" type="image/x-icon">
+    <title>Profile</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/library_page">Biblioteca</a></li>
+                <li><a href="/store_page">Tu Tienda</a></li>
+                <li><a href="/profile_page">Perfil</a></li>
+                <li><a href="/login_page">Cerrar Sesion</a></li>
+                <li>
+                    {% if user_name == 'Admin' %}
+                        <a href="{{ url_for('query') }}" class="query">Queries</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>User Profile</h1>
+    <div class="profile-container">
+        <img src="{{ url_for('static', filename='images/profile_pic.png') }}" alt="Profile Picture">
+        <p><strong>Name:</strong> {{ user_name }}</p>
+        <p><strong>Email:</strong> {{ email }}</p>
+        
+    </div>
+    <a href="{{ url_for('change_password') }}" class="btn">Cambiar contraseña</a>
+</body>
+</html>

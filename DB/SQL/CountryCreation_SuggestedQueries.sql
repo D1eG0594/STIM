@@ -1,3 +1,161 @@
+select name from games where max_owners > 45000000;
+
+select name, price from games order by max_owners desc limit 30;
+
+create table if not exists genero_juego(
+	app_id int,
+	categories varchar(50) 
+)
+
+drop table genero_juego;
+
+select categories, count(*) from genero_juego group by categories;
+
+
+create table if not exists tags_games(
+	app_id int,
+	tags varchar(50),
+);
+
+alter table tags_games drop column tag_frequencies;
+
+select tags, count(*) from tags_games group by tags order by count desc;
+
+
+create table if not exists categorie(
+	cotegorie_id serial primary key,
+	name varchar(50)
+);
+
+CREATE table if not exists game_p (
+	game_id int primary key,
+	name varchar(200),
+	release_date varchar(20),
+	price numeric(5,2),
+	positive int,
+	negative int,
+	downloads int
+);
+
+ALTER TABLE tags_games ADD COLUMN category_id INT;
+
+UPDATE tags_games 
+SET category_id = categorie.cotegorie_id 
+FROM categorie 
+WHERE tags_games.tags = categorie.name;
+
+ALTER TABLE tags_games DROP COLUMN tags;
+
+alter table categorie rename to category;
+
+drop table genero_juego;
+
+alter table games rename to game;
+
+alter table category rename column cotegorie_id to category_id;
+
+
+create table if not exists game_category_rel(
+	game_fk int not null,
+	category_fk int not null,
+	primary key(game_fk, category_fk),
+	foreign key (game_fk) references game(game_id),
+	foreign key (category_fk) references category(category_id)
+);
+
+drop table users;
+
+create table if not exists users(
+	user_id uuid default gen_random_uuid(),
+	user_name varchar(50) unique not null, 
+	email varchar(50) unique not null,
+	password varchar(50) not null,
+	primary key (user_id)
+);
+
+create table if not exists library(
+	library_id serial primary key,
+	games int default 0,
+	user_fk uuid not null,
+	foreign key (user_fk) references users(user_id)
+)
+
+create table if not exists game_library_rel(
+	game_fk int not null,
+	library_fk int not null,
+	primary key(game_fk, library_fk),
+	foreign key (game_fk) references game(game_id),
+	foreign key (library_fk) references library(library_id)
+);
+
+INSERT INTO library (user_fk)
+SELECT user_id FROM users;
+
+DO $$
+DECLARE 
+    lib_id INT;
+    game_id INT;
+    num_games INT;
+BEGIN 
+    FOR lib_id IN (SELECT library_id FROM library) LOOP
+        -- Generar una cantidad aleatoria de juegos para esta biblioteca (entre 1 y 10)
+        num_games := 1 + random() * 9;
+
+        FOR i IN 1..num_games LOOP
+            -- Seleccionar un juego aleatorio que aún no esté en la biblioteca
+            LOOP
+                SELECT g.game_id INTO game_id 
+                FROM game g
+                WHERE g.game_id NOT IN (
+                    SELECT glr.game_fk FROM game_library_rel glr WHERE glr.library_fk = lib_id
+                )
+                ORDER BY random() 
+                LIMIT 1;
+
+                -- Salir del bucle si se encuentra un juego no repetido
+                EXIT WHEN game_id IS NOT NULL;
+            END LOOP;
+            
+            -- Insertar en game_library_rel
+            IF game_id IS NOT NULL THEN
+                INSERT INTO game_library_rel (library_fk, game_fk) VALUES (lib_id, game_id);
+            END IF;
+        END LOOP;
+    END LOOP; 
+END $$
+
+
+SELECT g.name
+FROM game g
+JOIN game_library_rel glr ON g.game_id = glr.game_fk
+JOIN library l ON glr.library_fk = l.library_id
+WHERE l.user_fk = '5077f37b-24b5-4d7a-8b69-a8dc84601482';
+
+
+CREATE OR REPLACE FUNCTION create_library() --Creacion de una funcion
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO library (user_fk)
+    VALUES (NEW.user_id);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+drop function create_library();
+
+CREATE TRIGGER new_user --Creacion de un trigger
+AFTER INSERT ON users
+FOR EACH ROW
+EXECUTE FUNCTION create_library();
+
+drop trigger new_user on users;
+
+SELECT trigger_name
+FROM information_schema.triggers
+WHERE event_object_table = 'users';
+
+
+
 -----------------------------------------------------------------------------------------------------------------------
 
 select * from game g ;--con este muestra toda la tabla game
