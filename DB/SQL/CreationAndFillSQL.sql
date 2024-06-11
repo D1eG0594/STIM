@@ -178,7 +178,8 @@ ALTER TABLE users
 ADD CONSTRAINT country_fk FOREIGN KEY (country_fk)
 REFERENCES country (codeID);
 
---ME CANSE INTENTAR METER LA BASE DE DATOS DEL COUNTRY CON EL IMPORT DATA, ASI QUE LOS INGRESE MANUALMENTE XD
+--Por problemas tecnicos aislados de la herramienta, mucha de la información de la entidad country tuvo que ser ingresada a la base de datos por
+--medio de la ejecución de multiples y repetitivos insert into
 
 insert into country (codeid , "name" , acronyms) values (  , ' ', ' ');
 
@@ -434,37 +435,5 @@ INSERT INTO country (codeid, "name", acronyms) VALUES (894, 'Zambia', 'ZMB');
 INSERT INTO country (codeid, "name", acronyms) VALUES (716, 'Zimbabwe', 'ZWE');
 
 
-select * from country c ; --reviso que si quedo todito xD
---------------------------------------------------------------------------------------------------------------------------
-
---Queries que se me ocurrieron: 
-
---Dame el juego que se llame "KLAUS", que tenga 20.0000 descargas y que sea gratuito
-select price, downloads, positive, "name" 
-from game g
-where price = 0 and downloads = 20000 and positive = 3 and "name" = '-KLAUS-';
-
---Dame el precio y el número de descargas del videojuego "WARSAW"
-select "name", price, downloads  
-from game g 
-where "name" = 'WARSAW';
-
---Dame el nombre y el numero de las reseñas positivas y negativas de todos los juegos que valgan menos de 15 dolares
-select "name" , positive , negative 
-from game g 
-where price <15;
-
+select * from country c ; --reviso que si quedo todo lo ingresado dentro de la tabla country
 ---------------------------------------------------------------------------------------------------------------------------
---Queries ya más serios y necesarios 
-
---Necesito saber todos los juegos que son gratis y que tienen mas de 30.000 reseñas positivas
-select "name", price, positive
-from game g 
-where price = 0 and positive > 30000;
-
---Necesito saber cual es el juego más caro de la tienda 
---Necesito saber cual es el juego de pago más barato
---Dame los 10 peores juegos que tiene la tienda
---Quiero saber cuales son los juegos que salieron en 2014 y que precio tienen
-
-
