@@ -28,6 +28,8 @@ Finally you will see a file called "db_stim1", this file corresponds to the SQL 
 
 
 
+
+
 **DatabaseFoundations**
 
 2024-I **District University Francisco José de Caldas**
